@@ -1,0 +1,90 @@
+.status-fila-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.status-fila-container h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.status-item.waiting {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+}
+
+.status-item.active {
+  background-color: #cfe2ff;
+  border: 1px solid #0d6efd;
+}
+
+.status-item.completed {
+  background-color: #d1e7dd;
+  border: 1px solid #198754;
+}
+
+.status-item.failed {
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+}
+
+.status-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.status-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.status-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.status-footer small {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.status-loading,
+.status-erro,
+.status-vazio {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
