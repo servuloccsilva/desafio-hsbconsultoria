@@ -31,3 +31,11 @@ export interface AddJobDTO {
   tipo: string;
   dados?: any;
 }
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: string;
+  status?: number;
+  message?: string;
+}
