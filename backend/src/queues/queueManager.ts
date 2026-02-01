@@ -91,6 +91,10 @@ export class QueueManager {
   private static async processarJob(job: Job<JobData>): Promise<void> {
     const { tipo, dados } = job.data;
 
+    if (dados) {
+      console.log(`Processando dados do job:`, dados);
+    }
+
     // Aqui você implementaria a lógica específica de cada tipo de job
     switch (tipo) {
       case "enviar-email":

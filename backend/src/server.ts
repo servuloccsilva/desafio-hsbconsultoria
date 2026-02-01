@@ -16,6 +16,9 @@ app.use("/api", routes);
 
 // Rota 404
 app.use("*", (req, res) => {
+  if (req) {
+    console.log(req);
+  }
   res.status(404).json({
     success: false,
     error: "Rota não encontrada",

@@ -1,20 +1,29 @@
-import admin from "firebase-admin";
-import path from "path";
+import * as admin from "firebase-admin";
+import * as path from "path";
 
-// Importar as credenciais
-const serviceAccount = require(
-  path.join(__dirname, "../../serviceAccountKey.json"),
-);
+let serviceAccount: any;
 
-// Inicializar o Firebase Admin
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+try {
+  // Tenta carregar do arquivo
+  const serviceAccountPath = path.join(
+    __dirname,
+    "../../serviceAccountKey.json",
+  );
+  serviceAccount = require(serviceAccountPath);
+} catch (error) {
+  // Se falhar, usa variáveis de ambiente
+  const { firebaseConfig } = require("./firebaseConfig");
+  serviceAccount = firebaseConfig;
+}
 
-// Exportar o Firestore
+// Inicializar Firebase
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
+
 export const db = admin.firestore();
-
-// Nome da coleção
 export const EMPRESAS_COLLECTION = "empresas";
 
-console.log("Firebase conectado com sucesso!");
+console.log("Firebase configurado com sucesso!");

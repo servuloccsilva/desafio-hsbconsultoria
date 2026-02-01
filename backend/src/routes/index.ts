@@ -6,6 +6,9 @@ const router = Router();
 
 // Rota raiz da API
 router.get("/", (req: Request, res: Response) => {
+  if (req) {
+    console.log(req);
+  }
   res.json({
     message: "API Desafio Empresas",
     version: "1.0.0",

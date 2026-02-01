@@ -24,6 +24,10 @@ export class EmpresaController {
   }
 
   static async listar(req: Request, res: Response): Promise<void> {
+    if (req) {
+      console.log(req);
+    }
+
     try {
       const empresas = await EmpresaService.listarEmpresas();
 

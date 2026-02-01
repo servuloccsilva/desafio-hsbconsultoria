@@ -17,6 +17,9 @@ export function configureExpress(): Application {
 
   // Rota de health check
   app.get("/health", (req, res) => {
+    if (req) {
+      console.log(req);
+    }
     res.json({
       status: "OK",
       timestamp: new Date().toISOString(),
