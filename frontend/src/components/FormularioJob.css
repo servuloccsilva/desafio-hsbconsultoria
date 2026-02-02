@@ -54,3 +54,13 @@
   font-size: 0.85rem;
   margin-top: -0.5rem;
 }
+
+.info-message {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  padding: 1rem;
+  border-radius: 4px;
+  color: #1565c0;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}

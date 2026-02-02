@@ -133,16 +133,7 @@ export class QueueController {
         return;
       }
 
-      // Obter status
-      const status = await QueueManager.getQueueStatus(id);
-
-      if (!status) {
-        res.status(404).json({
-          success: false,
-          error: "Fila não encontrada. Crie um job primeiro.",
-        });
-        return;
-      }
+      const status = await QueueManager.getQueueStatus(id, empresa.razaoSocial);
 
       res.status(200).json({
         success: true,

@@ -148,12 +148,26 @@ export class QueueManager {
     return job;
   }
 
-  static async getQueueStatus(empresaId: string) {
+  static async getQueueStatus(empresaId: string, empresaNome?: string) {
     const queueName = Formatters.gerarNomeFila(empresaId);
-    const queue = queues.get(queueName);
+
+    // ✅ SE NÃO EXISTE, CRIA AGORA
+    let queue = queues.get(queueName);
 
     if (!queue) {
-      return null;
+      // Tenta recriar a fila
+      console.log(`⚠️ Fila ${queueName} não encontrada no Map, recriando...`);
+
+      // Se temos o nome, cria a fila
+      if (empresaNome) {
+        queue = this.getQueue(empresaId, empresaNome);
+      } else {
+        // Se não temos o nome, cria mesmo assim (worker será criado depois)
+        queue = new Queue(queueName, {
+          connection: redisConnection,
+        });
+        queues.set(queueName, queue);
+      }
     }
 
     const [waiting, active, completed, failed] = await Promise.all([

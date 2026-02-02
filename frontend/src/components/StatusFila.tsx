@@ -31,9 +31,26 @@ export const StatusFila: React.FC<StatusFilaProps> = ({
 
   useEffect(() => {
     carregarStatus();
-  }, [empresaId, atualizar]);
 
-  if (loading) {
+    // ✅ Intervalo que ajusta baseado no status
+    let interval: NodeJS.Timeout;
+
+    // Se tem jobs aguardando ou processando, atualiza rápido
+    if (status && (status.waiting > 0 || status.active > 0)) {
+      interval = setInterval(() => {
+        carregarStatus();
+      }, 2000); // 2 segundos (rápido)
+    } else {
+      // Se não tem nada, atualiza devagar
+      interval = setInterval(() => {
+        carregarStatus();
+      }, 10000); // 10 segundos (devagar)
+    }
+
+    return () => clearInterval(interval);
+  }, [empresaId, atualizar, status?.waiting, status?.active]);
+
+  if (loading && !status) {
     return <div className="status-loading">Carregando status...</div>;
   }
 
@@ -52,9 +69,37 @@ export const StatusFila: React.FC<StatusFilaProps> = ({
     return <div className="status-vazio">Fila ainda não criada</div>;
   }
 
+  // Indicador de atividade
+  const temAtividade = status.waiting > 0 || status.active > 0;
+
   return (
     <div className="status-fila-container">
-      <h3>📊 Status da Fila</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h3>📊 Status da Fila</h3>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          {temAtividade && (
+            <span
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "8px",
+                backgroundColor: "#4caf50",
+                borderRadius: "50%",
+                animation: "pulse 1.5s infinite",
+              }}
+            />
+          )}
+          <small style={{ color: "#666" }}>
+            {temAtividade ? "Atualizando a cada 2s" : "Atualizando a cada 10s"}
+          </small>
+        </div>
+      </div>
 
       <div className="status-grid">
         <div className="status-item waiting">
