@@ -18,6 +18,16 @@ Sistema completo para cadastro de empresas e processamento assíncrono usando fi
 - React Router
 - Axios
 
+  ## 📸 Screenshots
+
+  ### Tela Principal
+
+  ![Tela Principal](frontend/images/tela-principal.png)
+
+  ### Detalhes e Fila
+
+  ![Detalhes e Fila](frontend/images/tela-detalhes.png)
+
 ## 📋 Pré-requisitos
 
 - Node.js 18+
