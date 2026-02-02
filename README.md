@@ -39,8 +39,8 @@ Sistema completo para cadastro de empresas e processamento assíncrono usando fi
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/SEU-USUARIO/desafio-empresas.git
-cd desafio-empresas
+git clone https://github.com/servuloccsilva/desafio-hsbconsultoria.git
+cd desafio-hsbconsultoria
 ```
 
 ### 2. Configure o Firebase
