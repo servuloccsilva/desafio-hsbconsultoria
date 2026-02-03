@@ -159,7 +159,7 @@ curl -X POST http://localhost:3001/api/empresas/SEU_ID/jobs \
 ## 📂 Estrutura do Projeto
 
 ```
-desafio-empresas/
+desafio-hsbconsultoria/
 ├── backend/
 │   ├── src/
 │   │   ├── config/          # Configurações (Firebase, Redis, Express)
